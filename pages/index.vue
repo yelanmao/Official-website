@@ -1,5 +1,6 @@
 <template>
   <div class="hello-welcome" >
+      <img src="../assets/loading.gif" alt="" v-show="loading" style="position: absolute; left:50vw;top:50vh;transform: translate(-50%,-50%);">
       <Banner :BannerData="BannerData"/>
   </div>
   <div class="PageTwo">
@@ -34,12 +35,7 @@
 </template>
 
 <script setup>
-import loading from "../assets/loading.svg";
-// import HomepageNFTCard from "../components/Homepage/NFTCard/index.vue";
-// import HomepageNineBlocks from "../components/Homepage/NineBlocks/index.vue";
 import HomepageProduct from "../components/Homepage/Product/index.vue";
-import { onMounted, ref } from "vue";
-// import {getBanner} from"../api/banner.js"
 import titleControl from "../utils/titleControler";
 import Banner from "../components/Banner/index.vue"
 const props = defineProps({
@@ -48,6 +44,7 @@ const props = defineProps({
     default: true,
   },
 });
+const loading=ref(true)
 const BannerData=ref({
   autoDuration: 5000,
   duration: 500,
@@ -55,20 +52,10 @@ height: 100,
 imgSrcs:[] ,
 width: 100
 })
-let cardList = ref(null);
-// const { data: result } = await useAsyncData( //key
-//   // () => useFetch("/api/hello"), //数据请求
-  
-//   () => $fetch('https://discosoul.com.cn/offical/banner', {
-//     method: 'get',
-//     params: {
-//       belong:'indexBanner'
-//     }
-//   })
-// );
   onMounted(async()=>{
     const res= await useFetch( 'api/getBanner')
     BannerData.value.imgSrcs=res.data.value;
+    loading.value=false
     titleControl.setRouteTitle("首页 | 喵馋农");
   })
 </script>

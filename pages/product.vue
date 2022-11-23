@@ -10,7 +10,9 @@
         <i @click="GotoNext('种苗','left')" class="iconfont icon-shangyiyehoutuifanhui-yuankuang"></i>
       </div>
       <div class="center">
+      
         <div ref="germchitRef">
+          <img src="../assets/loading.gif" alt="" v-show="loading" style="left:36vw;width:10vw;height:10vw;position: relative;">
         <span class="item" v-for="(item,index) in showData.data" :key="item.id" >
           <img :src="item.image" alt="" />
           <div class="text">{{item.storeName}}</div>
@@ -25,6 +27,7 @@
 </template>
 <script setup>
 import titleControl from "../utils/titleControler";
+const loading=ref(true)
 const HotGoods = ref([]);
 const showData=ref({})
 const germchitRef=ref(null)
@@ -40,13 +43,15 @@ const switchData = reactive({
     });
 var timer=reactive(null)
 onMounted(async () => {
+  //现在种苗的信息是精品的信息——1
   const goodResult = await useFetch("api/getHotGoods");
   HotGoods.value = goodResult.data.value.data.list;
+  //现在种苗的信息是热品的信息——1
   showData.value.data=HotGoods.value.slice(0,4)
   showData.value.total=HotGoods.value.length;
   showData.value.index=0;
   titleControl.setRouteTitle("产品中心 | 喵馋农");
-  console.log(showData.value)
+  loading.value=false;
 });
 const GotoNext=(name,type)=>{
   if(type=='left'&&showData.value.index>0){

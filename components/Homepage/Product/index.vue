@@ -21,7 +21,7 @@
     </div>
     <div class="ProductChoose">
       <div class="ProductChoose-container">
-          <div class="ChooseItem" @click="changeProduct(item.name)" :class="data.name==item.name?'selected':'select'" v-for="(item,index) in allData" :key="index">
+          <div class="ChooseItem select" @click="changeProduct(item.name)" :class="data.name==item.name?'selected':''"  v-for="(item,index) in allData" :key="index">
             {{item.name}}
           </div>
       </div>
@@ -32,6 +32,7 @@
 import chicken from "../../../assets/chicken_PNG2143.png";
 import card from"../../../assets/nav.png"
 import { ref } from "vue";
+
 const data = ref({
   id: 1,
   name:'种苗',
@@ -154,21 +155,21 @@ const allData = ref([
         position: relative;
     }
     .selected{
-      cursor: pointer;
-        transition: 0.7s;
+      
         background: green;
         font-weight: 600;
         letter-spacing: 0.3rem;
         padding:0.5rem 2rem 0.8rem 2.5rem;
-        width:fit-content;
+        width:fit-content !important;
         border-radius: 1.5vw;
         color:#fff;
-        font-size: 1.5rem;
-        margin:3rem 0;
+        font-size: 1.5rem !important;
+        margin:3rem 0 !important;
+        left: 0 !important;
     }
     .select{
         cursor: pointer;
-        transition: 0.7s;
+        transition: 0.5s;
         position: relative;
         margin:3rem 0;
         font-size: 1rem;

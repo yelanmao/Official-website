@@ -5,9 +5,11 @@
   </div>
   <div class="NewsPage">
     <div class="newsMain">
+      <img src="../assets/loading.gif" alt="" v-show="loading" style="left:30vw;width:10vw;height:10vw;position: relative;">
+       
       <div class="item" v-for="(item,index) in showData" :key="item.id" @click="gotLink(item.link)">
         <img :src="item.banner" alt="">
-        <div class="text">
+        <div class="text">55
           <p class="content">{{item.title}}</p>
           <p class="time">{{getTime(item.updatedAt)}}</p>
         </div>
@@ -32,18 +34,17 @@
 <script setup>
 import titleControl from "../utils/titleControler";
 import { onMounted, ref } from "vue";
-// import $axios from "@nuxtjs/axios"
+const loading=ref(true)
 let allData = ref({data:[],total:0});
 const showData=ref([])
 const currentPage=ref(1)
  onMounted(async()=>{ 
     const res= await useFetch( 'api/getArticle')
     allData.value.data=res.data.value;
-   
     allData.value.total=allData.value.data.length
     showData.value=allData.value.data.slice(0,6);
     titleControl.setRouteTitle("新闻活动 | 喵馋农");
-    
+    loading.value=false
   })
   const getTime=(time)=>{
     const newtime=time.split('T')
