@@ -1,6 +1,10 @@
 <template>
-    <div class="join-container" :class="{ bigger: isPC }">
-      <h2 class="title">Little IMP 欢迎您</h2>
+  <div class="HeaderPage">
+    <img src="../assets/MCM_Join.jpg" alt="">
+    <div class="joinText">加入我们</div>
+  </div>
+    <div class="join-container bigger">
+      <h2 class="title">馋喵农 欢迎您</h2>
       <form class="empty-container">
         <div class="form-item">
           <span @click="changeStyle">您的姓名</span>
@@ -28,13 +32,9 @@
   <script setup>
   import Empty from "../components/Empty/index.vue";
   import titleControl from "../utils/titleControler";
-  let props = defineProps({
-    isPC: {
-      type: Boolean,
-      default: true,
-    },
-  });
-  titleControl.setRouteTitle("合作 | LITTLE IMP");
+onMounted(()=>{
+  titleControl.setRouteTitle("加入我们 | LITTLE IMP");
+})
   const changeStyle = (e) => {
     console.log(e.target.nextElementSibling);
     e.target.nextElementSibling.focus();
@@ -51,25 +51,38 @@
   </script>
   
   <style lang="less" scoped>
+  .HeaderPage{
+    width: 100%;
+    height:100vh;
+    img{
+      width: 100%;
+      height:100vh;
+      object-fit: cover;
+    }
+    .joinText{
+      color:#fff;
+      font-size: 5rem;
+      font-weight: 500;
+      letter-spacing: 3rem;
+      z-index:1;
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+    }
+  }
   .join-container {
     width: 100%;
     height: 100vh;
     padding: 1rem;
     padding-top: 16rem;
-    background: linear-gradient(#0e0b16, #2b0f35, #0e0b16);
+    background:url(../assets/MYN_HomeImg.png);
     &.bigger {
       .empty-container {
         height: auto;
+        max-width: 700px;
         width: 60vw;
-        background: linear-gradient(
-          120deg,
-          rgb(241, 204, 209),
-          rgb(243, 183, 247),
-          rgb(159, 178, 247),
-          rgb(241, 204, 209),
-          rgb(243, 183, 247),
-          rgb(159, 178, 247)
-        );
+        background: #fff;
         background-size: 600%;
         animation: change 5s infinite;
         color: #757575;
@@ -95,7 +108,7 @@
             &::after {
               content: "";
               display: block;
-              background-color: #9473ef;
+              background-color: #208c38;
               height: 0.4rem;
               left: -0.2rem;
               border-radius: 0.2rem;
@@ -126,7 +139,7 @@
           }
         }
         button {
-          background-color: #9473ef;
+          background-color: #208c38;
           border: none;
           border-radius: 1.6rem;
           padding: 1rem;
@@ -140,7 +153,7 @@
     }
     .title {
       text-align: center;
-      color: #fff;
+      color: rgb(61, 61, 61);
       margin-top: -5vh;
       margin-bottom: 3vh;
     }
@@ -148,15 +161,8 @@
         height: auto;
         margin: 0 auto;
         border-radius: 1rem;
-        background: linear-gradient(
-          120deg,
-          rgb(241, 204, 209),
-          rgb(243, 183, 247),
-          rgb(159, 178, 247),
-          rgb(241, 204, 209),
-          rgb(243, 183, 247),
-          rgb(159, 178, 247)
-        );
+        border: solid #e6f2e6;
+        background: #fff;
         background-size: 600%;
         animation: change 5s infinite;
         color: #757575;
@@ -182,7 +188,7 @@
             &::after {
               content: "";
               display: block;
-              background-color: #9473ef;
+              background-color: #208c38;
               height: 0.4rem;
               left: -0.2rem;
               border-radius: 0.2rem;
@@ -213,7 +219,7 @@
           }
         }
         button {
-          background-color: #9473ef;
+          background-color: #208c38;
           border: none;
           border-radius: 1.6rem;
           padding: 1rem;

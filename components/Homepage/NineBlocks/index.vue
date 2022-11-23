@@ -51,7 +51,7 @@
     width: 100%;
     height: 100vh;
     padding: 10rem 15rem;
-    background: linear-gradient(#0e0b16, #2b0f35, #0e0b16);
+    background: #fff;
     position: relative;
     color: #e6b5db;
     &.mobileWel {

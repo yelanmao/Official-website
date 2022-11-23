@@ -1,105 +1,147 @@
 <template>
-  <div class="hello-welcome" :class="{ mobileWel: !isPC }">
-    <h2 class="wel">欢迎来到</h2>
-    <div class="soul-disco">
-      <img src="../assets/font.png" alt="" />
-      <h2 v-show="isPC">灵魂迪厅</h2>
-    </div>
-
-    <h2 class="desc">由艺术创作者与专有NFT藏家 组成的主题线上社区</h2>
-    <div class="learn-more">
-      <h2>了解更多</h2>
-      <Icon size="2" type="arrowRight" />
-    </div>
-    <div class="dance-imp">
-      <img src="../assets/dance.png" alt="" />
-    </div>
-
-    <div class="bottom"></div>
+  <div class="hello-welcome" >
+      <Banner :BannerData="BannerData"/>
   </div>
-
-  <HomepageNFTCard :isPC="isPC" />
-
-  <HomepageNineBlocks :cardList="/*cardList*/[]" :isPC="isPC" />
-
-  <div class="home-container">
-    <!-- 关于我们的一些介绍 -->
-    <div class="info-container">
-      <div class="title-container" v-if="isPC">
-        <h1>集体智慧<br />汪汪姐很懒，什么都没留下</h1>
+  <div class="PageTwo">
+    <!-- <img src="../assets/MYN_HomeImg.png" alt=""> -->
+    <div class="left">
+      <div class="mission">
+        <span style="top: 40%;">使命</span>
+        <span style="top: 55%;width:fit-content;font-weight: 400;">只为用户养好鸡</span>
       </div>
-      <div class="info-content" :class="{ 'flex-4': isPC }">
-        <div class="pc-info-item" :class="{ 'info-item': !isPC }">
-          <Icon type="earth" size="6" />
-          <h3>潮流文化</h3>
-          <div class="text">
-            让更多国外潮玩品牌关注国内市场，为中国潮流玩具文化的蓬勃发展增添动力
-          </div>
-        </div>
-        <div class="pc-info-item" :class="{ 'info-item': !isPC }">
-          <Icon type="woshou" size="6" />
-          <h3>包容</h3>
-          <div class="text">
-            让更多国外潮玩品牌关注国内市场，为中国潮流玩具文化的蓬勃发展增添动力
-          </div>
-        </div>
-        <div class="pc-info-item" :class="{ 'info-item': !isPC }">
-          <Icon type="equal" size="6" />
-          <h3>平等无界限</h3>
-          <div class="text">
-            让更多国外潮玩品牌关注国内市场，为中国潮流玩具文化的蓬勃发展增添动力
-          </div>
-        </div>
-        <div class="pc-info-item" :class="{ 'info-item': !isPC }">
-          <Icon type="color" size="6" />
-          <h3>释放个性</h3>
-          <div class="text">
-            让更多国外潮玩品牌关注国内市场，为中国潮流玩具文化的蓬勃发展增添动力
-          </div>
-        </div>
+    </div>
+    <div class="center">
+      <div class="vision">
+        <span style="top: 40%;">愿景</span>
+        <span style="top: 55%;width:fit-content;">打造用户信赖的健康无科技的养鸡平台</span>
+      </div>
+    </div>
+    <div class="right">
+      <div class="mission">
+        <span style="top: 40%;">价值观</span>
+        <span style="top: 55%;width:fit-content;font-weight: 400;">
+          <p>客户第一、诚信担当</p>
+          <p>健康养鸡、合作共赢</p></span>
       </div>
     </div>
   </div>
+  <HomepageProduct/>
+  <!-- <HomepageNFTCard  /> -->
+
+  <!-- <HomepageNineBlocks :cardList="/*cardList*/[]" :isPC="isPC" /> -->
+
+
 </template>
 
 <script setup>
 import loading from "../assets/loading.svg";
-import HomepageNFTCard from "../components/Homepage/NFTCard/index.vue";
-import HomepageNineBlocks from "../components/Homepage/NineBlocks/index.vue";
+// import HomepageNFTCard from "../components/Homepage/NFTCard/index.vue";
+// import HomepageNineBlocks from "../components/Homepage/NineBlocks/index.vue";
+import HomepageProduct from "../components/Homepage/Product/index.vue";
 import { onMounted, ref } from "vue";
-import { getBlocks } from "../api/nineBlock";
+// import {getBanner} from"../api/banner.js"
 import titleControl from "../utils/titleControler";
-import Icon from "../components/Icon/index.vue";
+import Banner from "../components/Banner/index.vue"
 const props = defineProps({
   isPC: {
     type: Boolean,
     default: true,
   },
 });
-
+const BannerData=ref({
+  autoDuration: 5000,
+  duration: 500,
+height: 100,
+imgSrcs:[] ,
+width: 100
+})
 let cardList = ref(null);
-
-const { data:result} = await useAsyncData(
-  getBlocks, //key
-    () => $fetch('/api/block') //数据请求
-  )
- 
-  console.log(result,799999998999999)
-  onMounted(()=>{
-    titleControl.setRouteTitle("首页 | LITTLE IMP");
-//   const result = await getBlocks();
-//   cardList.value = result.datas.slice(0, 9);
+// const { data: result } = await useAsyncData( //key
+//   // () => useFetch("/api/hello"), //数据请求
+  
+//   () => $fetch('https://discosoul.com.cn/offical/banner', {
+//     method: 'get',
+//     params: {
+//       belong:'indexBanner'
+//     }
+//   })
+// );
+  onMounted(async()=>{
+    const res= await useFetch( 'api/getBanner')
+    BannerData.value.imgSrcs=res.data.value;
+    titleControl.setRouteTitle("首页 | 喵馋农");
   })
-
 </script>
 
 <style lang="less" scoped>
+.PageTwo{
+  width:100vw;
+  height: 100vh;
+  background:url(../assets/MYN_HomeImg.png);
+  position: relative;
+  background-repeat: round;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  justify-items: center;
+  .left{
+    .mission{
+      left:17vw;
+      position: relative;
+    }
+  }
+  .right{
+    .mission{
+      left:11vw;
+      position: relative;
+    }
+  }
+  .mission{
+    background:url(../assets/mission.png);
+    height:16vw;
+      width: 12vw;
+      background-repeat: round;
+    span{
+     
+        font-size: 14px;
+        font-weight: 600;
+        color:#fff;
+        left:50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+      }
+  }
+  .center{
+    flex:0 0 280px;
+    .vision{
+      height:400px;
+      width: 280px;
+      background:url(../assets/vision.png);
+      background-repeat: round;
+      span{
+        font-size: 14px;
+        font-weight: 600;
+        color:#fff;
+        left:50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+      }
+    }
+  }
+  .left{
+    flex:1 1 20vw;
+  }
+  .right{
+    flex:1 1 20vw;
+  }
+}
 .hello-welcome {
-  padding: 20rem 15rem;
   width: 100%;
   color: #e6b5db;
   height: 100vh;
-  // background: linear-gradient(#0e0b16, #2b0f35, #0e0b16);
+  background: linear-gradient(#ffffff, #ecfbe5, #e3f4e8);
   line-height: 2.5;
   position: relative;
   &.mobileWel {

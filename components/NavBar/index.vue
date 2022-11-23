@@ -1,18 +1,20 @@
 <template>
-  <div id="topNav" class="topNav" :class="{ mobile: !isPC }">
+  <div id="topNav" class="topNav" >
     <div class="nav-container">
       <!-- logo -->
       <NuxtLink class="link" to="/">
         <div class="img-wrap" @click="emit('click', 10)">
           <img
             :style="{ width: '100%', height: '100%' }"
-            src="../../assets/logo.png"
+            src="../../assets/CMN_logo.jpg"
             alt=""
           />
         </div>
       </NuxtLink>
+    <!-- 垫片 -->
+      <div class="block"></div>
       <!-- 右边的信息栏 -->
-      <div class="right" v-if="isPC">
+      <div class="right" >
         <NuxtLink
           active-class="selected"
           to="/"
@@ -21,56 +23,61 @@
         >
           <div class="nav-item">
             <div class="little-imp">
-              <img src="../../assets/nav.png" alt="" />
+              <img src="../../assets/MCN_nav.png" alt="" />
             </div>
-            <Icon type="home" size="2.2" /><span> 首页</span>
+            <!-- <Icon type="home" size="2.2" /> -->
+            <span> 首页</span>
           </div></NuxtLink
         >
 
         <NuxtLink
           active-class="selected"
           class="link"
-          to="/shop"
+          to="/product"
           exact-active-class="qwq"
           ><div class="nav-item">
             <div class="little-imp">
-              <img src="../../assets/nav.png" alt="" />
+              <img src="../../assets/MCN_nav.png" alt="" />
             </div>
-            <Icon type="shop" size="2" /><span> 鬼鬼的小店</span>
+            <!-- <Icon type="shop" size="2" /> -->
+            <span> 产品中心</span>
           </div></NuxtLink
         >
 
         <NuxtLink
           class="link"
-          to="/showhall"
+          to="/BreedingBase"
           active-class="selected"
           exact-active-class="qwq"
           ><div class="nav-item">
             <div class="little-imp">
-              <img src="../../assets/nav.png" alt="" />
+              <img src="../../assets/MCN_nav.png" alt="" />
             </div>
-            <Icon type="show" size="2.2" /><span> 展厅</span>
+            <!-- <Icon type="show" size="2.2" /> -->
+            <span> 养殖基地</span>
           </div></NuxtLink
         >
 
         <NuxtLink
           class="link"
-          to="/join"
+          to="/news"
           active-class="selected"
           exact-active-class="qwq"
           ><div class="nav-item">
             <div class="little-imp">
-              <img src="../../assets/nav.png" alt="" />
+              <img src="../../assets/MCN_nav.png" alt="" />
             </div>
-            <Icon type="join" size="2" /><span> 合作</span>
+            <!-- <Icon type="join" size="2" /> -->
+            <span> 新闻活动</span>
           </div></NuxtLink
         >
-        <NuxtLink class="link" to="/community" active-class="selected"
+        <NuxtLink class="link" to="/join" active-class="selected"
           ><div class="nav-item">
             <div class="little-imp">
-              <img src="../../assets/nav.png" alt="" />
+              <img src="../../assets/MCN_nav.png" alt="" />
             </div>
-            <Icon type="comment" size="2" /><span> 社区留言</span>
+            <!-- <Icon type="comment" size="2" /> -->
+            <span> 加入我们</span>
           </div></NuxtLink
         >
       </div>
@@ -81,12 +88,7 @@
 <script setup>
 import Icon from "../../components/Icon/index.vue";
 import { onMounted, ref, watchEffect } from "vue";
-let props = defineProps({
-  isPC: {
-    type: Boolean,
-    default: true,
-  },
-});
+
 </script>
 
 <style lang="less" scoped>
@@ -97,12 +99,12 @@ let props = defineProps({
     display: flex;
     justify-content: center;
   }
-  padding: 0 15rem;
+  background-image:linear-gradient(#000,rgba(0,0,0,0));
+  padding: 0 10vw;
   height: 9rem;
   width: 100%;
   position: fixed;
   z-index: 10;
-  background: linear-gradient(rgba(0,0,0, 0.6), rgba(0,0,0, 0));
 }
 .nav-container {
   margin: 0 auto;
@@ -111,27 +113,34 @@ let props = defineProps({
   display: flex;
   height: 100%;
   font-size: 1.5rem;
+  .block{
+    flex:0 0 30vw;
+  }
   .right {
     justify-content: space-around;
     height: 100%;
     padding: 0 !important;
     line-height: 6rem;
     display: flex;
-    color: #c3afbf;
+    color: #ffffff;
     position: relative;
 
     .link {
       position: relative;
+      font-size:1rem ;
+      padding:0 1rem;
       &.selected {
         // background-color: @base-color;
         border-radius: 0.8rem 0.8rem 0 0;
         transition: 0.3s;
         transform: translateY(-1rem);
-        color: #c3afbf;
+        color: #ffffff;
 
         .nav-item {
+         
           .little-imp {
             top: -2.8rem;
+            
           }
         }
 
@@ -139,10 +148,10 @@ let props = defineProps({
           content: "";
           display: block;
           position: absolute;
-          height: 0.3rem;
-          width: 70%;
+          height: 0.2rem;
+          width: 90%;
           border-radius: 0.15rem;
-          background: #c3afbf;
+          background: #ffffff;
           top: 1rem;
           left: 50%;
           transform: translateX(-50%);
@@ -158,6 +167,7 @@ let props = defineProps({
         position: absolute;
         transition: 0.3s;
         top: -6.8rem;
+        
         // top: 0;
         width: 5rem;
         height: 3rem;
@@ -188,11 +198,12 @@ let props = defineProps({
     }
   }
   .img-wrap {
-    height: 100%;
-    width: 30rem;
+    height: 3.5rem;
+    width: 8rem;
     position: relative;
     img {
       .self-fill();
+      border-radius: 0.5rem;
     }
     cursor: pointer;
   }

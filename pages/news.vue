@@ -1,0 +1,154 @@
+<template>
+  <div class="HeaderPage Page">
+    <img src="../assets/MCN_NewsImg1.jpg" alt="" />
+    <div class="HeaderText">新闻中心</div>
+  </div>
+  <div class="NewsPage">
+    <div class="newsMain">
+      <div class="item" v-for="(item,index) in showData" :key="item.id" @click="gotLink(item.link)">
+        <img :src="item.banner" alt="">
+        <div class="text">
+          <p class="content">{{item.title}}</p>
+          <p class="time">{{getTime(item.updatedAt)}}</p>
+        </div>
+      </div>
+    </div>
+   
+    <div class="pagination">
+      <el-pagination
+        background
+        layout="prev, pager, next, jumper, total'"
+        :total="allData.total"
+        :page-size="6"
+        v-model="currentPage"
+        @current-change="handleCurrentChange"
+      />
+    </div>
+  </div>
+  <div class="FooterPage Page" @click="gotLink('http://www.zhuzaibrother.cn/')">
+    <img src="../assets/MCN_NewsFotter.png" alt="" />
+  </div>
+</template>
+<script setup>
+import titleControl from "../utils/titleControler";
+import { onMounted, ref } from "vue";
+// import $axios from "@nuxtjs/axios"
+let allData = ref({data:[],total:0});
+const showData=ref([])
+const currentPage=ref(1)
+ onMounted(async()=>{ 
+    const res= await useFetch( 'api/getArticle')
+    allData.value.data=res.data.value;
+   
+    allData.value.total=allData.value.data.length
+    showData.value=allData.value.data.slice(0,6);
+    titleControl.setRouteTitle("新闻活动 | 喵馋农");
+    
+  })
+  const getTime=(time)=>{
+    const newtime=time.split('T')
+    return newtime[0]
+  }
+  const handleCurrentChange=(page)=>{
+    // console.log(showData,999,allData.value,currentPage.value*6-5,currentPage.value*6+1,e);
+    showData.value=allData.value.data.slice(page*6-5,page*6+1)
+  }
+ const gotLink=(link)=>{
+   window.open(link)
+ }
+</script>
+<style scoped lang="less">
+.Page {
+  width: 100%;
+  height: 100vh;
+}
+.FooterPage{
+
+  img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  .HeaderText {
+    color: #fff;
+    font-size: 5rem;
+    font-weight: 500;
+    letter-spacing: 3rem;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.HeaderPage {
+  img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  .HeaderText {
+    color: #fff;
+    font-size: 5rem;
+    font-weight: 500;
+    letter-spacing: 3rem;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.NewsPage{
+  width: 90vw;
+  height: 130vh;
+  margin:auto;
+ .newsMain{
+  display: grid;
+  grid-template-columns: repeat(3,30vw);
+  justify-items: center;
+  align-items: start;
+  .item{
+
+    overflow: hidden;
+    border-radius: 1.5rem;
+    margin:2rem 0;
+    width:40vh;
+  }
+  img{
+    object-fit: cover;
+    width:40vh;
+    height:40vh;
+  }
+  .text{
+    background: #00990F;
+    color:#fff;;
+    padding:1rem 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1vw;
+    .content{
+      overflow: hidden;
+    text-overflow: ellipsis;
+      font-weight: 500;
+      line-height: 2rem;
+      text-align: start;
+    }
+    .time{
+      font-weight: 500;
+      text-align: end;
+    }
+  }
+ }
+ .pagination{
+   position: absolute;
+   left:50%;
+   transform: translate(-50%,0);
+  margin-top:2.5rem;
+ }
+}
+
+/deep/ .el-pagination.is-background .el-pager li.is-active{
+  background: #00990F;
+}
+</style>

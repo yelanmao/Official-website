@@ -34,11 +34,9 @@ import { ref, computed, onMounted, watchEffect, onBeforeMount } from "vue";
  let isPC = true;
 watchEffect(() => {
   isPC = clientWidth.value >= 996;
-  console.log(isPC);
 });
 onMounted(() => {
   clientWidth.value = window.innerWidth;
-  console.log(99999,clientWidth)
   clientWidth.value = window.innerWidth; 
   // console.log(clientWidth.value);
   window.addEventListener("resize", () => {
@@ -50,4 +48,6 @@ onMounted(() => {
 </script>
 <style  >
 @import "./index.css";
+@import 'element-plus/dist/index.css';
+@import '//at.alicdn.com/t/c/font_3787784_sftk6gsuqqr.css';
 </style>
