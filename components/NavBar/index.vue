@@ -102,6 +102,7 @@ let props = defineProps({
   width: 100%;
   position: fixed;
   z-index: 10;
+  background: linear-gradient(rgba(0,0,0, 0.6), rgba(0,0,0, 0));
 }
 .nav-container {
   margin: 0 auto;

@@ -99,7 +99,7 @@ const { data:result} = await useAsyncData(
   width: 100%;
   color: #e6b5db;
   height: 100vh;
-  background: linear-gradient(#0e0b16, #2b0f35, #0e0b16);
+  // background: linear-gradient(#0e0b16, #2b0f35, #0e0b16);
   line-height: 2.5;
   position: relative;
   &.mobileWel {

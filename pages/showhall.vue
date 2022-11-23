@@ -52,14 +52,14 @@
   let menus = ref([]);
  
   onMounted(() => {
-    document.getElementById("app").style.height = "92.3vh";
+    document.getElementById("__nuxt").style.height = "92.3vh";
     titleControl.setRouteTitle("展厅 | LITTLE IMP");
     document.body.style.overflow = "hidden";
     document.querySelector(".footer-container").style.display = "none";
   });
   onUnmounted(() => {
     document.body.style.overflow = "auto";
-    document.getElementById("app").style.height = "auto";
+    document.getElementById("__nuxt").style.height = "auto";
     document.querySelector(".footer-container").style.display = "flex";
   });
   </script>
