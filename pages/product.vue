@@ -5,42 +5,15 @@
   </div>
   <div class="HotGoodsPage">
     <div class="title">种苗</div>
-    <div class="GoodsShow">
-      <div class="left aside">
-        <i
-          @click="GotoNext('种苗', 'left')"
-          class="iconfont icon-shangyiyehoutuifanhui-yuankuang"
-        ></i>
-      </div>
-      <div class="center">
-        <div ref="germchitRef">
-          <img
-            src="../assets/loading.gif"
-            alt=""
-            v-show="loading"
-            style="left: 36vw; width: 10vw; height: 10vw; position: relative"
-          />
-          <span
-            class="item"
-            v-for="(item, index) in showData.data"
-            :key="item.id"
-          >
-            <img :src="item.image" alt="" />
-            <div class="text">{{ item.storeName }}</div>
-          </span>
-        </div>
-      </div>
-      <div class="right aside">
-        <i
-          @click="GotoNext('种苗', 'right')"
-          class="iconfont icon-xiayiyeqianjinchakangengduo-yuankuang"
-        ></i>
-      </div>
-    </div>
+      <ProductPageSlide :showData="HotGoods"/>  
+  </div>
+  <div class="HotGoodsPage" style="background-color: #E5F4E7;">
+    <div class="title">生鲜</div>
+      <ProductPageSlide :showData="FreshData"/>
   </div>
   <div class="HotGoodsPage">
-    <div class="title">种苗</div>
-    <div class="GoodsShow"></div>
+    <div class="title">蛋卡</div>
+      <ProductPageSlide :showData="FreshData"/>
   </div>
 </template>
 <script setup>
@@ -51,24 +24,19 @@ const loading = ref(true);
 const HotGoods = ref([]);
 const showData = ref({});
 const germchitRef = ref(null);
-const dom = ref(null);
-const moveSize = ref(0);
-const switchData = reactive({
-  dis: 0,
-  totalDis: 0,
-  targetMarginLeft: 0,
-  currentMarginLeft: 0,
-  times: 0,
-  tick: 16,
-});
 var timer = reactive(null);
+const FreshData=ref([]);
+const CardData=ref([]);
 onMounted(async () => {
   //现在种苗的信息是后台设置的热品商品的信息——2
   const goodResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/2`);
   HotGoods.value = goodResult.data.value.data.list;
   //现在生鲜的信息是后台设置的精品商品的信息——1
-  const FreshFResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/1`);
-  HotGoods.value = goodResult.data.value.data.list;
+  const FreshResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/1`);
+  FreshData.value = FreshResult.data.value.data.list;
+//蛋卡
+const CardResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/1`);
+  CardData.value = CardResult.data.value.data.list;
   showData.value.data = HotGoods.value.slice(0, 4);
   showData.value.total = HotGoods.value.length;
   showData.value.index = 0;
@@ -88,26 +56,10 @@ const GotoNext = (name, type) => {
     showData.value.index,
     showData.value.index + 4
   );
-  console.log(showData.value);
 };
 
-// onUnmounted(()=>{
-//       clearInterval(timer)
-//     })
-// const GotoNext=(name,type)=>{
-//   if(name=='种苗'){
-//     dom=germchitRef.value
-//   }
-//   if(type=='left'){
-//     dom.value?dom.value.moveSize++:dom.value.moveSize=1
-//   }
-//       switchData.currentMarginLeft = parseFloat(getComputedStyle(dom.value).marginLeft);
-//       switchData.times = Math.ceil(2000/ switchData.tick);
-//       switchData.targetMarginLeft=-parseFloat(getComputedStyle(dom.value.firstElementChild).width)*dom.value.moveSize
-//       switchData.totalDis =switchData.targetMarginLeft - switchData.currentMarginLeft;
-//       switchData.dis = switchData.totalDis / switchData.times;
-//       console.log(99999,switchData,dom)
-// }
+
+
 </script>
 <style scoped lang="less">
 .Page {
@@ -133,16 +85,16 @@ const GotoNext = (name, type) => {
   }
 }
 .HotGoodsPage {
-  height: 100vh;
+  height: fit-content;
   width: 100vw;
-  padding-top: 10vh;
+  padding-top: 4vh;
   .title {
     width: 100vw;
     text-align: center;
     color: #00990f;
     font-size: 1.8rem;
     font-weight: 600;
-    padding: 7vh 0;
+    padding: 4vh 0;
   }
   .GoodsShow {
     display: flex;
@@ -152,6 +104,7 @@ const GotoNext = (name, type) => {
   .aside {
     flex: 0 0 8vw;
     text-align: center;
+    animation: jump-up 3s infinite;
     i {
       font-size: 5vh;
       color: rgba(0, 0, 0, 0.2);

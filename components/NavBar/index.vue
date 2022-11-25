@@ -129,6 +129,12 @@ import { onMounted, ref, watchEffect } from "vue";
       position: relative;
       font-size:1rem ;
       padding:0 1rem;
+      transition: 0.3s;
+      :active{
+        font-size:1.5rem ;
+        transition: 0.3s;
+        color:rgb(182, 219, 182)
+      }
       &.selected {
         // background-color: @base-color;
         border-radius: 0.8rem 0.8rem 0 0;
@@ -161,6 +167,7 @@ import { onMounted, ref, watchEffect } from "vue";
     }
 
     .nav-item {
+      
       .little-imp {
         left: 50%;
         transform: translateX(-50%);
@@ -171,6 +178,7 @@ import { onMounted, ref, watchEffect } from "vue";
         // top: 0;
         width: 5rem;
         height: 3rem;
+        
         img {
           width: 100%;
           height: 100%;
@@ -201,6 +209,11 @@ import { onMounted, ref, watchEffect } from "vue";
     height: 3.5rem;
     width: 8rem;
     position: relative;
+    :hover{
+          width: 9rem !important;
+        height: 4rem !important;
+        transition: 1s;
+      }
     img {
       .self-fill();
       border-radius: 0.5rem;

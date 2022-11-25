@@ -68,6 +68,17 @@ width: 100
 </script>
 
 <style lang="less" scoped>
+@keyframes level-move{
+    0%{
+      transform: translateY(5%);
+    }
+    50%{
+      transform: translateY(-5%);
+    }
+    100%{
+      transform: translateY(5%);
+    }
+  }
 .PageTwo{
   width:100vw;
   height: 100vh;
@@ -82,6 +93,7 @@ width: 100
     .mission{
       left:17vw;
       position: relative;
+      
     }
   }
   .right{
@@ -95,6 +107,7 @@ width: 100
     height:16vw;
       width: 12vw;
       background-repeat: round;
+     
     span{
      
         font-size: 14px;
@@ -109,6 +122,7 @@ width: 100
   .center{
     flex:0 0 280px;
     .vision{
+      animation: level-move 3s infinite;
       height:400px;
       width: 280px;
       background:url(../assets/vision.png);

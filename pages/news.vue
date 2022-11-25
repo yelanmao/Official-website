@@ -64,7 +64,7 @@ const currentPage=ref(1)
   height: 100vh;
 }
 .FooterPage{
-
+  margin-top: 15vh;
   img {
     width: 100%;
     height: 100vh;
@@ -102,7 +102,7 @@ const currentPage=ref(1)
 }
 .NewsPage{
   width: 90vw;
-  height: 130vh;
+  height: fit-content;
   margin:auto;
  .newsMain{
   display: grid;
@@ -110,6 +110,7 @@ const currentPage=ref(1)
   justify-items: center;
   align-items: start;
   .item{
+    cursor: pointer;
     background: #00990F;
     overflow: hidden;
     border-radius: 1.5rem;
@@ -149,7 +150,19 @@ const currentPage=ref(1)
  }
 }
 
-/deep/ .el-pagination.is-background .el-pager li.is-active{
+:deep(.el-pagination.is-background .el-pager li.is-active){
   background: #00990F;
+}
+:deep(.el-pagination .el-pager li:focus-visible){
+  outline:solid 1px #00990F;
+}
+:deep(.el-pagination .el-pager li:hover){
+  color:#00990F;
+}
+:deep(.el-input__wrapper.is-focus){
+  box-shadow: 0 0 0 1px #00990F inset;
+}
+:deep(.el-pagination__editor.el-input){
+  width:35px;
 }
 </style>

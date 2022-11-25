@@ -108,8 +108,8 @@ var curTimer=setInterval(()=>{
   }
 },1000)
 
-onUpdated(()=>{
-
+onUnmounted(()=>{
+  clearInterval(curTimer)
 })
 onMounted(() => {
   console.log(777777777,props)
@@ -156,6 +156,7 @@ onMounted(() => {
 }
 #false{
   .moveable{
+    transition: 1s;
     left:0!important;
     top:0 !important;
   }

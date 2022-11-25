@@ -45,8 +45,8 @@ setup(props,ctx){
     display: flex;
 }
 .dots span{
-    width: 0.9rem;
-    height: 0.9rem;
+    width: 0.8rem;
+    height: 0.8rem;
     border-radius: 50%;
     margin:0.8rem;
     cursor: pointer;
