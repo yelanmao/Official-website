@@ -7,61 +7,89 @@
     <div class="title">种苗</div>
     <div class="GoodsShow">
       <div class="left aside">
-        <i @click="GotoNext('种苗','left')" class="iconfont icon-shangyiyehoutuifanhui-yuankuang"></i>
+        <i
+          @click="GotoNext('种苗', 'left')"
+          class="iconfont icon-shangyiyehoutuifanhui-yuankuang"
+        ></i>
       </div>
       <div class="center">
-      
         <div ref="germchitRef">
-          <img src="../assets/loading.gif" alt="" v-show="loading" style="left:36vw;width:10vw;height:10vw;position: relative;">
-        <span class="item" v-for="(item,index) in showData.data" :key="item.id" >
-          <img :src="item.image" alt="" />
-          <div class="text">{{item.storeName}}</div>
-        </span>
-      </div>
+          <img
+            src="../assets/loading.gif"
+            alt=""
+            v-show="loading"
+            style="left: 36vw; width: 10vw; height: 10vw; position: relative"
+          />
+          <span
+            class="item"
+            v-for="(item, index) in showData.data"
+            :key="item.id"
+          >
+            <img :src="item.image" alt="" />
+            <div class="text">{{ item.storeName }}</div>
+          </span>
+        </div>
       </div>
       <div class="right aside">
-        <i @click="GotoNext('种苗','right')"  class="iconfont icon-xiayiyeqianjinchakangengduo-yuankuang"></i>
+        <i
+          @click="GotoNext('种苗', 'right')"
+          class="iconfont icon-xiayiyeqianjinchakangengduo-yuankuang"
+        ></i>
       </div>
     </div>
+  </div>
+  <div class="HotGoodsPage">
+    <div class="title">种苗</div>
+    <div class="GoodsShow"></div>
   </div>
 </template>
 <script setup>
 import titleControl from "../utils/titleControler";
-const loading=ref(true)
+import ProductPageSlide from "../components/ProductPage/Slide/index.vue";
+import {IS_DEVELOPMENT} from"../api/request.js"
+const loading = ref(true);
 const HotGoods = ref([]);
-const showData=ref({})
-const germchitRef=ref(null)
-const dom=ref(null)
-const moveSize=ref(0)
+const showData = ref({});
+const germchitRef = ref(null);
+const dom = ref(null);
+const moveSize = ref(0);
 const switchData = reactive({
-      dis: 0,
-      totalDis: 0,
-      targetMarginLeft: 0,
-      currentMarginLeft: 0,
-      times: 0,
-      tick: 16,
-    });
-var timer=reactive(null)
-onMounted(async () => {
-  //现在种苗的信息是精品的信息——1
-  const goodResult = await useFetch("api/getHotGoods");
-  HotGoods.value = goodResult.data.value.data.list;
-  //现在种苗的信息是热品的信息——1
-  showData.value.data=HotGoods.value.slice(0,4)
-  showData.value.total=HotGoods.value.length;
-  showData.value.index=0;
-  titleControl.setRouteTitle("产品中心 | 喵馋农");
-  loading.value=false;
+  dis: 0,
+  totalDis: 0,
+  targetMarginLeft: 0,
+  currentMarginLeft: 0,
+  times: 0,
+  tick: 16,
 });
-const GotoNext=(name,type)=>{
-  if(type=='left'&&showData.value.index>0){
-    showData.value.index--
-  }else if(type=='right'&&showData.value.index+4<showData.value.total){
-    showData.value.index++
+var timer = reactive(null);
+onMounted(async () => {
+  //现在种苗的信息是后台设置的热品商品的信息——2
+  const goodResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/2`);
+  HotGoods.value = goodResult.data.value.data.list;
+  //现在生鲜的信息是后台设置的精品商品的信息——1
+  const FreshFResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/1`);
+  HotGoods.value = goodResult.data.value.data.list;
+  showData.value.data = HotGoods.value.slice(0, 4);
+  showData.value.total = HotGoods.value.length;
+  showData.value.index = 0;
+  titleControl.setRouteTitle("产品中心 | 喵馋农");
+  loading.value = false;
+});
+const GotoNext = (name, type) => {
+  if (type == "left" && showData.value.index > 0) {
+    showData.value.index--;
+  } else if (
+    type == "right" &&
+    showData.value.index + 4 < showData.value.total
+  ) {
+    showData.value.index++;
   }
-  showData.value.data=HotGoods.value.slice(showData.value.index,showData.value.index+4)
-  console.log(showData.value)
-}
+  showData.value.data = HotGoods.value.slice(
+    showData.value.index,
+    showData.value.index + 4
+  );
+  console.log(showData.value);
+};
 
 // onUnmounted(()=>{
 //       clearInterval(timer)
@@ -105,9 +133,9 @@ const GotoNext=(name,type)=>{
   }
 }
 .HotGoodsPage {
-  height:100vh;
+  height: 100vh;
   width: 100vw;
-  padding-top:10vh;
+  padding-top: 10vh;
   .title {
     width: 100vw;
     text-align: center;
@@ -133,27 +161,27 @@ const GotoNext=(name,type)=>{
   }
   .center {
     flex: 1 1 80vw;
-   
-    width:84vw;
-    .item{
+
+    width: 84vw;
+    .item {
       overflow: hidden;
-    border:solid 0.3rem #00990f;
-    display:inline-block;
-    border-radius: 1.5rem;
-    margin:2rem 2.3vw;
-    width:fit-content
+      border: solid 0.3rem #00990f;
+      display: inline-block;
+      border-radius: 1.5rem;
+      margin: 2rem 2.3vw;
+      width: fit-content;
     }
-    img{
-    object-fit: cover;
-    width:16vw;
-    height:16vw;
-  }
-  .text{
-    text-align: center;
-    margin:2.5vw 0;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-  }
+    img {
+      object-fit: cover;
+      width: 16vw;
+      height: 16vw;
+    }
+    .text {
+      text-align: center;
+      margin: 2.5vw 0;
+      font-weight: 600;
+      letter-spacing: 0.1rem;
+    }
   }
   .right {
   }

@@ -38,6 +38,7 @@
 import HomepageProduct from "../components/Homepage/Product/index.vue";
 import titleControl from "../utils/titleControler";
 import Banner from "../components/Banner/index.vue"
+import {IS_DEVELOPMENT} from"../api/request.js"
 const props = defineProps({
   isPC: {
     type: Boolean,
@@ -46,14 +47,20 @@ const props = defineProps({
 });
 const loading=ref(true)
 const BannerData=ref({
-  autoDuration: 5000,
+  autoDuration: 10000,
   duration: 500,
 height: 100,
 imgSrcs:[] ,
 width: 100
 })
+
   onMounted(async()=>{
-    const res= await useFetch( 'api/getBanner')
+    console.log(9999,process.env.NODE_ENV)
+    const res= await useFetch( `${IS_DEVELOPMENT?'api':'oweb'}/banner`,{
+      params:{
+        belong:'indexBanner'
+      }
+    })
     BannerData.value.imgSrcs=res.data.value;
     loading.value=false
     titleControl.setRouteTitle("首页 | 喵馋农");

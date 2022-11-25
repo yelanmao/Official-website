@@ -37,7 +37,7 @@ setup(props,ctx){
 .dots{
     position: absolute;
     padding:1rem 1.5rem;
-    background-color:rgba(0, 0, 0, .2);
+    /* background-color:rgba(0, 0, 0, .2); */
     border-radius: 8px;
     left:50%;
     bottom: 3vw;
@@ -45,14 +45,29 @@ setup(props,ctx){
     display: flex;
 }
 .dots span{
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 0.9rem;
+    height: 0.9rem;
     border-radius: 50%;
     margin:0.8rem;
     cursor: pointer;
     background-color: #fff;
 }
 .dots span.active{
-  background: linear-gradient( 120deg, #e5ebdb, #b3eeb9,#5dc25d, #c3c8c3);
+  background: #0000;
+  border:rgb(255, 255, 255) solid  0.1rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  transition: 0.5s;
+  top:-0.2rem;
+  position: relative;
+}
+.dots span:hover{
+  background: #0000;
+  border:rgb(255, 255, 255) solid  0.1rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  transition: 0.7s;
+  top:-0.2rem;
+  position: relative;
 }
 </style>

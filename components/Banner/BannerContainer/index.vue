@@ -1,9 +1,12 @@
 <template>
   <div ref="myImg" :style="{ width: BannerData.imgSrcs.length * 100 + 'vw' }">
-    <img
+    <ImgLoader
       class="myImg"
       v-for="(item, index) in BannerData.imgSrcs"
       :src="item.url"
+      :placeholder="item.url"
+      :curIndex="curIndex==index"
+      :active="curIndex"
       :style="{
         width: BannerData.width + 'vw',
         height: BannerData.height + 'vh',
@@ -15,8 +18,9 @@
 
 <script>
 import { defineComponent, onMounted, onUpdated, reactive, ref,onUnmounted } from "vue";
-
+import ImgLoader from"../ImgLoader/index.vue"
 export default {
+  components:[ImgLoader],
   props: {
     BannerData: {
       type: Object,
@@ -79,4 +83,5 @@ export default {
 .myImg {
   float: left;
 }
+
 </style>

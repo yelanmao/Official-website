@@ -34,12 +34,13 @@
 <script setup>
 import titleControl from "../utils/titleControler";
 import { onMounted, ref } from "vue";
+import {IS_DEVELOPMENT} from"../api/request.js"
 const loading=ref(true)
 let allData = ref({data:[],total:0});
 const showData=ref([])
 const currentPage=ref(1)
  onMounted(async()=>{ 
-    const res= await useFetch( 'api/getArticle')
+    const res= await useFetch( `${IS_DEVELOPMENT?'api':'oweb'}/article/admin`)
     allData.value.data=res.data.value;
     allData.value.total=allData.value.data.length
     showData.value=allData.value.data.slice(0,6);
@@ -51,7 +52,6 @@ const currentPage=ref(1)
     return newtime[0]
   }
   const handleCurrentChange=(page)=>{
-    // console.log(showData,999,allData.value,currentPage.value*6-5,currentPage.value*6+1,e);
     showData.value=allData.value.data.slice(page*6-5,page*6+1)
   }
  const gotLink=(link)=>{
@@ -110,16 +110,16 @@ const currentPage=ref(1)
   justify-items: center;
   align-items: start;
   .item{
-
+    background: #00990F;
     overflow: hidden;
     border-radius: 1.5rem;
     margin:2rem 0;
-    width:40vh;
+    width:25vw;
   }
   img{
     object-fit: cover;
-    width:40vh;
-    height:40vh;
+    width:25vw;
+    height:25vw;
   }
   .text{
     background: #00990F;
