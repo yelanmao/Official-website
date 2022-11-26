@@ -79,7 +79,7 @@ const GotoNext = (number) => {
   justify-content: space-between;
   align-items: center;
 }
-.aside {
+.slide-container .aside {
   width: 8vw;
   flex: 0 0 10vw;
   text-align: center;
@@ -90,9 +90,9 @@ const GotoNext = (number) => {
   }
  
 }
-.left {
+.slide-container .left {
 }
-.center {
+.slide-container .center {
   flex: 1 1 80vw;
   width: 80vw;
   overflow: hidden;
@@ -120,7 +120,7 @@ const GotoNext = (number) => {
     text-overflow: ellipsis;
   }
 }
-.right {
+.slide-container .right {
 }
 .el-message--info{
     background: #0000;
