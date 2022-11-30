@@ -18,7 +18,7 @@
 
 <script>
 import { defineComponent, onMounted, onUpdated, reactive, ref,onUnmounted } from "vue";
-import ImgLoader from"../../ImgLoader/index.vue"
+import ImgLoader from"../../../ImgLoader/index.vue"
 export default {
   components:[ImgLoader],
   props: {

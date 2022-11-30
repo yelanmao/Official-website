@@ -85,6 +85,7 @@ watchEffect(()=>{
 })
 const cancel=()=>{
   MenuExpand.value=false
+  showMenu.value=true
   setTimeout(()=>{displaynone.value=true },1000)
 }
 
@@ -113,7 +114,9 @@ const changeMenu=()=>{
 .page{
   position:fixed;
   background-color:#fff;
-  width:100%
+  width:100%;
+  
+  z-index: 99;
 }
 .top{
   display:flex;

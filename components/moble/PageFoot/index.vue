@@ -6,7 +6,7 @@
     <NuxtLink to="/moble/product" class="link">
       <div>产品中心</div>
     </NuxtLink>
-    <NuxtLink to="/moble/BreedinhBase" class="link">
+    <NuxtLink to="/moble/BreedingBase" class="link">
       <div>养殖基地</div>
     </NuxtLink>
     <NuxtLink to="/moble/news" class="link">
@@ -55,7 +55,6 @@ const companyData=ref(null)
 const SocalMedalData=ref(null)
 companyData.value=companyInfo().value
 SocalMedalData.value=SocalMedal().value;
-console.log( SocalMedalData,77777777777,companyData)
 </script>
 <style scoped lang="less">
  .CompanyInfo{

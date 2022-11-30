@@ -30,7 +30,8 @@
 </template>
 <script setup>
 import chicken from "../../../assets/chicken_PNG2143.png";
-import card from"../../../assets/nav.png"
+import card from"../../../assets/card.png"
+import fresh from"../../../assets/fresh.png"
 import { ref } from "vue";
 
 const data = ref({
@@ -42,7 +43,6 @@ const data = ref({
     "优选品质·健康体制·品相优良·骨架肥大原生态优良品种，正宗纯种优质鸡苗，专属农场饲养，无抗生素，无激素，长大后成鸡3-4斤左右，安全滋补，肉质紧实。",
 });
 const changeProduct=(name)=>{
-    
     data.value=allData.value.filter(item=>item.name==name)[0]
     console.log(data.value,name);
 }
@@ -54,15 +54,15 @@ const allData = ref([
     ProductImg: chicken,
     title: "喵克斯农场散养鸡",
     description:
-      "优选品质·健康体制·品相优良·骨架肥大原生态优良品种，正宗纯种优质鸡苗，专属农场饲养，无抗生素，无激素，长大后成鸡3-4斤左右，安全滋补，肉质紧实。",
+      "优选品质·健康体制·品相优良·骨架肥大 原生态优良品种，正宗纯种优质鸡苗，专属农场饲养，无抗生素，无激素，长大后成鸡3-4斤左右，安全滋补，肉质紧实。",
   },
   {
     id: 2,
     name:'生鲜',
-    ProductImg: chicken,
+    ProductImg: fresh,
     title: "喵克斯农场生鲜",
     description:
-      "优选品质·健康体制·品相优良·骨架肥大原生态优良品种，正宗纯种优质鸡苗，专属农场饲养，无抗生素，无激素，长大后成鸡3-4斤左右，安全滋补，肉质紧实。",
+      "优选品质·农场种植·新鲜美味·原生态 原生态优良品种，节水滴灌，不用大水浸灌，自然生长不用生长调节剂，无激素，无化肥，无农药，原生态健康蔬菜。",
   },
   {
     id: 3,
@@ -90,10 +90,11 @@ const allData = ref([
     }
     img {
         transition: 0.7s;
-      width: 16vw;
+      width: 17vw;
       height: 20vw;
       position: relative;
-      top: 3vw;
+      top: 6vw;
+      object-fit:contain;
     }
     .shadow {
       background: #e5f4e7;
