@@ -41,7 +41,7 @@ const showData=ref([])
 const currentPage=ref(1)
  onMounted(async()=>{ 
     const res= await useFetch( `${IS_DEVELOPMENT?'api':'oweb'}/article/admin`)
-    allData.value.data=res.data.value;
+    allData.value.data=getNews().value;
     allData.value.total=allData.value.data.length
     showData.value=allData.value.data.slice(0,6);
     titleControl.setRouteTitle("新闻活动 | 喵馋农");

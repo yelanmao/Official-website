@@ -40,10 +40,7 @@ import titleControl from "../utils/titleControler";
 import Banner from "../components/Banner/index.vue"
 import {IS_DEVELOPMENT} from"../api/request.js"
 const props = defineProps({
-  isPC: {
-    type: Boolean,
-    default: true,
-  },
+  
 });
 const loading=ref(true)
 const BannerData=ref({
@@ -55,13 +52,7 @@ width: 100
 })
 
   onMounted(async()=>{
-    console.log(9999,process.env.NODE_ENV)
-    const res= await useFetch( `${IS_DEVELOPMENT?'api':'oweb'}/banner`,{
-      params:{
-        belong:'indexBanner'
-      }
-    })
-    BannerData.value.imgSrcs=res.data.value;
+    BannerData.value.imgSrcs=BannerInfo().value;
     loading.value=false
     titleControl.setRouteTitle("首页 | 喵馋农");
   })

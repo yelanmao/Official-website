@@ -102,7 +102,7 @@ import { onMounted, ref, watchEffect } from "vue";
   background-image:linear-gradient(#000,rgba(0,0,0,0));
   padding: 0 10vw;
   height: 9rem;
-  width: 100%;
+  width: 100vw;
   position: fixed;
   z-index: 10;
 }

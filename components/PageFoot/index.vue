@@ -39,44 +39,7 @@
             </div>
 
         </div>
-        <!-- <div class="content">
-          <div class="icon-row">
-            <div class="icon-wrap">
-              <div class="qrcode-wrap">
-                <img
-                  src="http://www.zhuzaibrother.cn/static/upload/2022-2-13-17-39-18-459-6c137.png"
-                  alt=""
-                  class="qrcode"
-                />
-              </div>
-              <Icon type="weixin" size="3" />
-            </div>
-  
-            <div class="icon-wrap">
-              <div style="left: 20%" class="qrcode-wrap">
-                <img
-                  src="http://www.zhuzaibrother.cn/static/upload/2022-2-13-17-39-18-459-6c137.png"
-                  alt=""
-                  class="qrcode"
-                />
-              </div>
-              <Icon class="weibo" type="weibo" size="3" />
-            </div>
-  
-            <img class="bigreverse" src="../../assets/bigverse.jpg" alt="" />
-          </div>
-         
-          <div class="info-container">
-            <h3>灵魂迪厅</h3>
-            <p>supported by BIGVERSE</p>
-            <p class="addr">浙江理工大学</p>
-            <p class="icp">
-              <a href="https://beian.miit.gov.cn/" target="_blank">
-                浙ICP备2022004322号
-              </a>
-            </p>
-          </div>
-        </div> -->
+      
       </div>
     </div>
   </template>
@@ -101,15 +64,17 @@ const { data: result2 } = await useAsyncData(
     method: 'get',
   })
 );
-companyData.value=result.value.data;
-SocalMedalData.value=result2.value.data;
-console.log(7777,result2);
+
+// SocalMedal().value=init.SocalMedalData;
+companyData.value=companyInfo().value
+SocalMedalData.value=SocalMedal().value;
+
   </script>
 
 
 <style lang="less" scoped>
 .footer-container {
-  width: 100%;
+  width: 100vw;
   height: 22rem;
   background: rgb(255, 255, 255);
   display: flex;
@@ -189,7 +154,7 @@ console.log(7777,result2);
             transform-origin: bottom;
             
             img {
-              width: 100%;
+              width: 100%3;
               height: 100%;
             }
             &::after {

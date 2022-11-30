@@ -135,7 +135,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="less">
-@import "../../assets/styles/mixin.less";
+@import "../../../assets/styles/mixin.less";
 .image-loader-container {
   width: 100%;
   height: 100%;

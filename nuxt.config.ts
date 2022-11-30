@@ -1,6 +1,14 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
 
+
+    publicRuntimeConfig: {
+      BASE_URL: process.env.BASE_URL,
+    },
+    privateRuntimeConfig: {
+      API_SECRET: process.env.API_SECRET,
+    },
+    
   // modules: [
   //     '@nuxtjs/aixos'
   // ],

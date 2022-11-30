@@ -51,7 +51,7 @@ const GotoNext = (number) => {
         curIndex.value = 0;
         ElMessage({
             dangerouslyUseHTMLString:true,
-            message:'<div style="opacity:1;position:absolute;top:10vh;"><img style="height:7rem;margin:auto;display:block;" src="https://cdn.discosoul.com.cn/farm-130939706307cb14aaa87848e887c9c766bf666213.png"/><p style="color:#000;font-weight:600;">亲！不能再往前啦(≧▽≦)</p></div>',
+            message:'<div style="transform:translate(-50%,0);opacity:1;position:absolute;top:10vh;"><img style="height:7rem;margin:auto;display:block;" src="https://cdn.discosoul.com.cn/farm-130939706307cb14aaa87848e887c9c766bf666213.png"/><p style="color:#000;font-weight:600;">亲！不能再往前啦(≧▽≦)</p></div>',
             icon:'',
             duration:2000,
         })

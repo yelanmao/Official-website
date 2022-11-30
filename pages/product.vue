@@ -29,14 +29,11 @@ const FreshData=ref([]);
 const CardData=ref([]);
 onMounted(async () => {
   //现在种苗的信息是后台设置的热品商品的信息——2
-  const goodResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/2`);
-  HotGoods.value = goodResult.data.value.data.list;
+  HotGoods.value = goodResult().value.list;
   //现在生鲜的信息是后台设置的精品商品的信息——1
-  const FreshResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/1`);
-  FreshData.value = FreshResult.data.value.data.list;
-//蛋卡
-const CardResult = await useFetch(`${IS_DEVELOPMENT?'api':'oweb'}/groom/list/1`);
-  CardData.value = CardResult.data.value.data.list;
+  FreshData.value = FreshResult().value.list;
+  //蛋卡
+  CardData.value = CardResult().value.list;
   showData.value.data = HotGoods.value.slice(0, 4);
   showData.value.total = HotGoods.value.length;
   showData.value.index = 0;

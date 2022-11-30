@@ -1,12 +1,13 @@
 <template>
    <!-- :onmouseenter="stopSwitch" 
    :onmouseleave="autoSwitch" -->
-  <div
+  <div @touchmove="touchmove"
+  @touchstart="touchstart"
    ref="BannerRef"
    class="banner-container" 
    :style="{width:BannerData.width+'vw',height:BannerData.height+'vh'}">
     <BannerContainer :BannerData='BannerData' :curIndex="curIndex"/>
-    <SwitchAvator @changePage="handleEmit"/>
+    <!-- <SwitchAvator @changePage="handleEmit"/> -->
     <SwitchDots @handleDot="handleDot" :BannerData='BannerData' :curIndex="curIndex"/>
   </div>
 </template>
@@ -31,9 +32,12 @@ export default {
   },
   setup(props:any, ext:any) {
     const BannerRef=ref(null)
+    const startX=ref(0)
+    const startY=ref(0)
+    var timer2=reactive(null as any)
     var timer=reactive(null as any)
     const state=reactive({ curIndex:0})
-    console.log(77777,props)
+
 
     const handleSwitch=(index:number)=>{
       if(index<0){
@@ -58,6 +62,26 @@ export default {
     onUpdated(()=>{
 
     })
+    const touchstart=(e:any)=>{
+       startX.value=e.touches[0].clientX;
+      startY.value=e.touches[0].clientY;
+    }
+    const touchmove=(e:any)=>{
+      clearInterval(timer2);
+       timer2=setInterval(()=>{
+        if((startX.value-e.touches[0].clientX)<=0){
+        console.log("左滑");
+        state.curIndex--
+      }else{
+        console.log("右滑");
+        state.curIndex++
+      }
+      handleSwitch(state.curIndex)
+      clearInterval(timer2)
+      },20)
+     
+      
+    }
     const handleEmit=(value:string)=>{
       value==='add'?state.curIndex++:state.curIndex--;
       handleSwitch(state.curIndex)
@@ -76,6 +100,8 @@ export default {
       stopSwitch,
       handleEmit,
       handleDot,
+      touchmove,
+      touchstart,
     };
   },
 };
@@ -86,8 +112,9 @@ export default {
   position: relative;
   box-sizing: border-box;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 0;
     margin: auto;
+    
 }
 
 </style>

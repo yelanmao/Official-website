@@ -18,7 +18,7 @@
 
 <script>
 import { defineComponent, onMounted, onUpdated, reactive, ref,onUnmounted } from "vue";
-import ImgLoader from"../ImgLoader/index.vue"
+import ImgLoader from"../../ImgLoader/index.vue"
 export default {
   components:[ImgLoader],
   props: {
@@ -82,6 +82,7 @@ export default {
 <style scoped>
 .banner-container{
   margin-left:0px;
+  z-index:-888;
 }
 .myImg {
   float: left;
