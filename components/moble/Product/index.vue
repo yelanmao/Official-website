@@ -1,13 +1,13 @@
 <template>
-  <div class="slide-container">
-    <div class="left aside">
+  <div class="MBslide-container">
+    <div class="MBleft MBaside">
       <i
         @click="GotoNext(1)"
         class="iconfont icon-shangyiyehoutuifanhui-yuankuang"
       ></i>
     </div>
-    <div class="center">
-      <div ref="germchitRef" class="slide">
+    <div class="MBcenter">
+      <div ref="germchitRef" class="MBslide">
         <img
           src="../../../assets/loading.gif"
           alt=""
@@ -15,16 +15,16 @@
           style="left: 36vw; width: 10vw; height: 10vw; position: relative"
         />
         <span
-          class="item"
+          class="MBitem"
           v-for="(item, index) in props.showData"
           :key="item.id"
         >
           <img :src="item.image" alt="" />
-          <div class="text">{{ item.storeName }}</div>
+          <div class="MBtext">{{ item.storeName }}</div>
         </span>
       </div>
     </div>
-    <div class="right aside">
+    <div class="MBright MBaside">
       <i
         @click="GotoNext(-1)"
         class="iconfont icon-xiayiyeqianjinchakangengduo-yuankuang"
@@ -55,7 +55,7 @@ const GotoNext = (number) => {
             icon:'',
             duration:2000,
         })
-    }else if(-curIndex.value>showData.value.length-4){
+    }else if(-curIndex.value>showData.value.length-1){
         curIndex.value=showData.value.length
         ElMessage({
             dangerouslyUseHTMLString:true,
@@ -64,22 +64,22 @@ const GotoNext = (number) => {
             duration:2000,
         })
     }else{
-         germchitRef.value.style.marginLeft = curIndex.value * 20 + "vw";
+         germchitRef.value.style.marginLeft = curIndex.value * 80 + "vw";
     }
   
   console.log(curIndex.value, showData.value.length,germchitRef.value.style.marginLeft, 777799);
 };
 </script>
 <style lang="less" >
-.slide {
+.MBslide {
   transition: 1s;
 }
-.slide-container {
+.MBslide-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.slide-container .aside {
+.MBslide-container .MBaside {
   width: 8vw;
   flex: 0 0 10vw;
   text-align: center;
@@ -90,37 +90,38 @@ const GotoNext = (number) => {
   }
  
 }
-.slide-container .left {
+.MBslide-container .MBleft {
 }
-.slide-container .center {
+.MBslide-container .MBcenter {
   flex: 1 1 80vw;
   width: 80vw;
   overflow: hidden;
   scrollbar-width: none;
-  .item {
+  .MBitem {
     overflow: hidden;
-    border: solid 0.3vw #00990f;
+    border: solid 1vw #00990f;
     display: inline-block;
     border-radius: 1.5rem;
-    margin: 2rem 2.2vw;
+    margin: 2rem 9vw;
     width: fit-content;
   }
   img {
     object-fit: cover;
-    width: 15vw;
-    height: 15vw;
+    width: 60vw;
+    height: 60vw;
   }
-  .text {
+  .MBtext {
     text-align: center;
     margin: 2.5vw 0;
     font-weight: 600;
     letter-spacing: 0.1rem;
-    width: 15vw;
+    width: 60vw;
+    font-size:4vw ;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 }
-.slide-container .right {
+.MBslide-container .MBright {
 }
 .el-message--info{
     background: #0000;

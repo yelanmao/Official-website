@@ -35,7 +35,7 @@ const props = defineProps({
 
 <style lang="less" scoped>
 .new-container{
-    height: 110vw;
+    height: 80vw;
     width: 100%;
     border-bottom: 4vw solid rgb(232, 232, 232);
     
@@ -44,21 +44,24 @@ const props = defineProps({
     width: 100%;
     img{
         height: 100%;
-        width: 100%;  
+        width: 100%; 
+        object-fit:contain; 
     }
     .container{
-        height: 80vw;
-        width: 100vw;
+        margin:0 2vw;
+        height: 60vw;
+        width: 95vw;
+        object-fit: cover;
         background-size:cover !important;
         background-position:center center !important;
         border-radius: 4vw;
         top:0;
     }
     .opacity{
-        height: 30%;
+        height: 50%;
         width: 100%;
         z-index: 1;
-    bottom:29%;
+    bottom:50%;
     position: relative;
     background-image: linear-gradient(rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.95), rgb(255, 255, 255));                                                                     
     }
@@ -72,7 +75,7 @@ const props = defineProps({
         
     }
     .title{
-        font-size: 8vw;
+        font-size: 6vw;
         font-weight: 600;
         width: fit-content;
         word-wrap: normal;
