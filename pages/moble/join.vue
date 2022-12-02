@@ -20,10 +20,8 @@
           <input @focus="changeSpan" @blur="checkIsEmpty" type="text" />
         </div>
         <div class="form-item">
-          <div class="get-code">
-            <input placeholder="输入验证码" type="text" />
-            <button @click.prevent="">获取验证码</button>
-          </div>
+          <span @click="changeStyle">留言</span>
+          <input @focus="changeSpan" @blur="checkIsEmpty" type="text" />
         </div>
         <button @click.prevent="">一起合作</button>
       </form>
