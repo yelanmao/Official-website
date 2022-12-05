@@ -59,25 +59,25 @@ getNews().value=newsData.value.data
 console.log(newsData.value,111111111111111);
 
 const { data: goodResultData } = await useAsyncData(() =>
-  $fetch("https://www.discosoul.com.cn/api/mall/groom/list/2", {   method: "get" })
+  $fetch("https://www.discosoul.com.cn/shop/mall/groom/list/2", {   method: "get" })
 );
 goodResult().value=goodResultData.value.data
 
 const { data: FreshResultData } = await useAsyncData(() =>
-  $fetch("https://www.discosoul.com.cn/api/mall/groom/list/1", {   method: "get" })
+  $fetch("https://www.discosoul.com.cn/shop/mall/groom/list/1", {   method: "get" })
 );
 FreshResult().value=FreshResultData.value.data
 
 const { data: CardResultData } = await useAsyncData(() =>
-  $fetch("https://www.discosoul.com.cn/api/mall/groom/list/1", {   method: "get" })
+  $fetch("https://www.discosoul.com.cn/shop/mall/groom/list/1", {   method: "get" })
 );
 CardResult().value=CardResultData.value.data
-console.log(7777777,goodResult(),FreshResult(),CardResult())
+
 </script>
 <style  >
 @import "./index.css";
 @import "element-plus/dist/index.css";
-@import "//at.alicdn.com/t/c/font_3787784_rhs153tbzr.css";
+@import "//at.alicdn.com/t/c/font_3787784_ulpuxp3000f.css";
 .loading {
   background: #fff;
   position: fixed;

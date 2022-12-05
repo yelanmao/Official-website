@@ -30,7 +30,6 @@
   </template>
   
   <script setup>
-  import Empty from "../components/Empty/index.vue";
   import titleControl from "../utils/titleControler";
 onMounted(()=>{
   titleControl.setRouteTitle("加入我们 | LITTLE IMP");
@@ -73,7 +72,7 @@ onMounted(()=>{
   }
   .join-container {
     width: 100%;
-    height: 100vh;
+    height:fit-content;
     padding: 1rem;
     padding-top: 16rem;
     background:url(../assets/MYN_HomeImg.png);

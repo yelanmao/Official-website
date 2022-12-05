@@ -5,21 +5,20 @@
   </div>
   <div class="HotGoodsPage">
     <div class="title">种苗</div>
-      <ProductPageSlide :showData="HotGoods"/>  
+      <ProductPageSlide :title="ZhongMiao" :showData="HotGoods"/>  
   </div>
   <div class="HotGoodsPage" style="background-color: #E5F4E7;">
     <div class="title">生鲜</div>
-      <ProductPageSlide :showData="FreshData"/>
+      <ProductPageSlide :title="ShengXian" :showData="FreshData"/>
   </div>
   <div class="HotGoodsPage">
     <div class="title">蛋卡</div>
-      <ProductPageSlide :showData="FreshData"/>
+      <ProductPageSlide :title="Danka"  :showData="FreshData"/>
   </div>
 </template>
 <script setup>
 import titleControl from "../utils/titleControler";
 import ProductPageSlide from "../components/ProductPage/Slide/index.vue";
-import {IS_DEVELOPMENT} from"../api/request.js"
 const loading = ref(true);
 const HotGoods = ref([]);
 const showData = ref({});

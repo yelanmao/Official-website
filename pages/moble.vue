@@ -82,6 +82,11 @@ watchEffect(()=>{
   if(MenuExpand.value){
     displaynone.value=false
   }
+  if(displaynone.value){
+    setTimeout(() => {
+      MenuExpand.value
+    },2000)
+  }
 })
 const cancel=()=>{
   MenuExpand.value=false
